@@ -1,0 +1,32 @@
+body {
+    background: #1f1f1f;
+    color: #f1f1f1;
+    font-size: 22px;
+}
+
+.wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+table, th, td {
+    border: 1px solid #f1f1f1;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 5px;
+}
+
+#output {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px;
+    font-size: 1.25em;
+    width: 5em;
+}

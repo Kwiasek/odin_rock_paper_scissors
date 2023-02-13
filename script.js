@@ -1,4 +1,4 @@
-function getComputerChoice() {
+const getComputerChoice = () => {
     let random = Math.floor(Math.random() * 3) + 1;
     switch(random) {
         case 1:
@@ -10,23 +10,40 @@ function getComputerChoice() {
     }
 }
 
-function playRound(playerSelection, computerSelection) {
-    if ((playerSelection == "Rock" && computerSelection == "Scissors") || (playerSelection == "Paper" && computerSelection == "Rock") || (playerSelection == "Scissors" && computerSelection == "Paper")) {
-        return 1;
+let playerScore = 0;
+let computerScore = 0;
+
+const playRound = (playerSelection) => {
+    if (playerSelection == getComputerChoice()) {
+        return
     }
-    else if (playerSelection == computerSelection) {
-        return 0;
+    else if ((playerSelection == 'Rock' && getComputerChoice() == 'Scissors') || (playerSelection == 'Paper' && getComputerChoice() == 'Rock') || (playerSelection == 'Scissors' && getComputerChoice() == 'Paper')) {
+        playerScore ++;
     }
     else {
-        return -1;
+        computerScore ++;
     }
+    game();
 }
 
+const game = () => {
+    document.querySelector('#output').innerHTML = `<table id="score">
+        <tr>
+            <th>Player score</th><th>Computer score</th>
+        </tr>
+        <tr>
+            <td>${playerScore}</td><td>${computerScore}</td>
+        </tr>
+    </table>`
 
-function game(playerChoice) {
-    let result = 0;
-    for (let i = 0; i < 5; i++) {
-        result += playRound(playerChoice, getComputerChoice())
+    if (computerScore == 5) {
+        document.querySelector('#output').innerHTML = '<h1>Computer wins!</h1>';
+        playerScore = 0;
+        computerScore = 0;
     }
-    alert(`${result > 0 ? 'Player wins!' : result < 0 ? 'Computer wins!' : 'Draw!'} Result: ${result}`)
+    else if (playerScore == 5) {
+        document.querySelector('#output').innerHTML = '<h1>Player wins!</h1>';
+        playerScore = 0;
+        computerScore = 0;
+    }
 }
